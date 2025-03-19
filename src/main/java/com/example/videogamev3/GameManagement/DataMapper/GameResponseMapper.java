@@ -1,5 +1,6 @@
 package com.example.videogamev3.GameManagement.DataMapper;
 
+import ch.qos.logback.core.model.ComponentModel;
 import com.example.videogamev3.GameManagement.DataAccess.Game;
 import com.example.videogamev3.GameManagement.DataAccess.GameId;
 import com.example.videogamev3.GameManagement.DataAccess.Genre;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Mapper(imports = {UUID.class, GameRequestModel.class, GameId.class, LocalDateTime.class, Genre.class})
+@Mapper(componentModel = "spring",imports = {UUID.class, GameRequestModel.class, GameId.class, LocalDateTime.class, Genre.class})
 public interface GameResponseMapper {
 
     @Mapping(target = "id", expression = "java(game.getGameId().getUuid())")

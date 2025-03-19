@@ -1,6 +1,5 @@
-package com.example.videogamev3.GameManagement.DataAccess;
+package com.example.videogamev3.UserManagement.DataAccess;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,8 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReviewId {
-    @Column(name = "review_id") // Map uuid to game_id column
-
+public class AdminId {
     private String uuid;
 }

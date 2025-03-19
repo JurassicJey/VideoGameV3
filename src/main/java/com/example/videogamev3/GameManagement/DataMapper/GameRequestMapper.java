@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Mapper(imports = {UUID.class, GameRequestModel.class, GameId.class, LocalDateTime.class, Genre.class})
+@Mapper(componentModel = "spring", imports = {UUID.class, GameRequestModel.class, GameId.class, LocalDateTime.class, Genre.class})
 public interface GameRequestMapper {
     @Mapping(target = "gameId", expression = "java(new GameId(UUID.randomUUID().toString()))")
     @Mapping(target = "releaseDate", expression = "java(LocalDateTime.now())")

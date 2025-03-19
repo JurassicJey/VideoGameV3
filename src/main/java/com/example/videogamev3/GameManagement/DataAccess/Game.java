@@ -1,6 +1,8 @@
 package com.example.videogamev3.GameManagement.DataAccess;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,8 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "games")
 public class Game {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EmbeddedId
     private GameId gameId;
     private String title;
     private double price;
@@ -25,7 +26,9 @@ public class Game {
     private String description;
     private String publisher;
     private String developer;
+    @Enumerated(EnumType.STRING)
     private Genre genre;
-    @OneToMany(mappedBy="game")
+    @JsonManagedReference
+    @OneToMany(mappedBy="game", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Review> reviews;
 }

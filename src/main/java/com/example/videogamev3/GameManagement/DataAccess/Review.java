@@ -1,5 +1,6 @@
 package com.example.videogamev3.GameManagement.DataAccess;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,12 +14,12 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "reviews")
 public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EmbeddedId
     private ReviewId reviewId;
     private String comment;
     private String rating;
     private LocalDateTime timestamp;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="game_id", nullable = true)
     private Game game;

@@ -18,7 +18,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GameRequestModel {
-    private String uuid;
     private String title;
     private double price;
     private String description;
