@@ -52,3 +52,13 @@ CREATE TABLE admins (
     username VARCHAR(255),
     password VARCHAR(255)
 );
+
+-- Create the orders table
+CREATE TABLE orders (
+                        order_id VARCHAR(255) NOT NULL,
+                        order_date DATETIME,
+                        total_price DOUBLE,
+                        order_user_id VARCHAR(255),
+                        PRIMARY KEY (order_id),
+                        FOREIGN KEY (order_user_id) REFERENCES users(user_id)
+);

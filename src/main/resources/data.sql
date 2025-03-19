@@ -22,10 +22,14 @@ INSERT INTO reviews (review_id, comment, rating, timestamp, game_id) VALUES
 
 INSERT INTO users (user_id, username, email, password, balance) VALUES
                                                                  ('123e4567-e89b-12d3-a456-426614174000', 'john_doe', 'john.doe@example.com', 'password123', 100.50),
-                                                                 ('234e5678-f90c-23e4-b567-537725285111', 'jane_smith', 'jane.smith@example.com', 'securepass', 250.75),
-                                                                 ('345f6789-0a1d-34f5-c678-648836396222', 'peter_jones', 'peter.jones@example.com', 'anotherpass', 50.00),
-                                                                 ('456g7890-1b2e-45g6-d789-759947407333', 'mary_brown', 'mary.brown@example.com', 'strongpass', 1000.25),
-                                                                 ('567h8901-2c3f-56h7-e890-860058518444', 'david_wilson', 'david.wilson@example.com', 'mysecret', 15.80);
+                                                                 ('234e5678-f90c-23e4-b567-537725285111', 'jane_smith', 'jane.smith@example.com', 'securepass', 250.75);
+
+-- Insert sample data into orders
+INSERT INTO orders (order_id, order_date, total_price, order_user_id) VALUES
+                                                                          ('o1a2b3c4-d5e6-7890-1234-567890abcdef', '2023-10-27 10:00:00', 50.25, '123e4567-e89b-12d3-a456-426614174000'),
+                                                                          ('o2b3c4d5-e6f7-8901-2345-67890abcdef0', '2023-10-27 11:30:00', 120.75, '123e4567-e89b-12d3-a456-426614174000'),
+                                                                          ('o3c4d5e6-f7a8-9012-3456-7890abcdef12', '2023-10-27 14:15:00', 75.50, '234e5678-f90c-23e4-b567-537725285111');
+
 
 
 INSERT INTO admins (admin_id, username, password) VALUES
