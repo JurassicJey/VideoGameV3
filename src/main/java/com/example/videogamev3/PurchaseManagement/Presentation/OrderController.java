@@ -2,10 +2,7 @@ package com.example.videogamev3.PurchaseManagement.Presentation;
 
 import com.example.videogamev3.PurchaseManagement.BusinessLogic.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/order")
@@ -16,7 +13,7 @@ public class OrderController {
     }
 
     @PostMapping("{uuid}")
-    public void addOrder(OrderRequestModel orderRequestModel, @PathVariable String uuid) {
+    public void addOrder(@RequestBody OrderRequestModel orderRequestModel, @PathVariable String uuid) {
         orderService.addOrder(orderRequestModel, uuid);
     }
 

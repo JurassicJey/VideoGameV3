@@ -20,7 +20,6 @@ import java.util.UUID;
 public interface OrderRequestMapper {
     @Mapping(target = "orderId", expression = "java(new OrderId(UUID.randomUUID().toString()))")
     @Mapping(target = "orderDate", expression = "java(LocalDateTime.now())")
-    @Mapping(target = "totalPrice", expression = "java(orderRequestModel.getTotalPrice())")
     @Mapping(target = "user", ignore = true)
     Order orderRequestModelToOrder(OrderRequestModel orderRequestModel, String uuid);
 }
