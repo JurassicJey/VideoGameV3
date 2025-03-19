@@ -1,6 +1,7 @@
 package com.example.videogamev3.GameManagement.DataAccess;
 
 
+import com.example.videogamev3.UserManagement.DataAccess.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -31,4 +32,9 @@ public class Game {
     @JsonManagedReference
     @OneToMany(mappedBy="game", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Review> reviews;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name="user_game_id", nullable = true)
+    private User gameOwner;
 }

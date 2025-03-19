@@ -24,7 +24,9 @@ CREATE TABLE IF NOT EXISTS games (
     description VARCHAR(2000), -- Adjusted size
     publisher VARCHAR(255),
     developer VARCHAR(255),
-    genre VARCHAR(255)
+    genre VARCHAR(255),
+    user_game_id VARCHAR(255)
+
     );
 
 CREATE TABLE users (

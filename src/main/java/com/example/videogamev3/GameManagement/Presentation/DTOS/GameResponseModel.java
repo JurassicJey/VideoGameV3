@@ -1,5 +1,6 @@
 package com.example.videogamev3.GameManagement.Presentation.DTOS;
 
+import com.example.videogamev3.GameManagement.DataAccess.Game;
 import com.example.videogamev3.GameManagement.DataAccess.GameId;
 import com.example.videogamev3.GameManagement.DataAccess.Genre;
 import com.example.videogamev3.GameManagement.DataAccess.Review;
@@ -24,4 +25,5 @@ public class GameResponseModel {
     private String developer;
     private String genre;
     private List<Review> reviews;
+    private List<Game> userGames;
 }

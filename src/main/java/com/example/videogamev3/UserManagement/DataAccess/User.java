@@ -1,5 +1,7 @@
 package com.example.videogamev3.UserManagement.DataAccess;
 
+import com.example.videogamev3.GameManagement.DataAccess.Game;
+import com.example.videogamev3.GameManagement.DataAccess.Review;
 import com.example.videogamev3.PurchaseManagement.DataAccess.Order;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -24,4 +26,8 @@ public class User {
     @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Order> orders;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy="gameOwner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Game> games;
 }
