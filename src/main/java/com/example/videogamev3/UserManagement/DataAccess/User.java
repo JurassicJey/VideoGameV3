@@ -8,13 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "admins")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
     @EmbeddedId
-    private UserId id;
+    private UserId userId;
     private String username;
     private String email;
     private String password;
