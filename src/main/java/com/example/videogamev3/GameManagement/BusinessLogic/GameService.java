@@ -10,6 +10,8 @@ import com.example.videogamev3.GameManagement.DataMapper.ReviewMapper;
 import com.example.videogamev3.GameManagement.Presentation.DTOS.GameRequestModel;
 import com.example.videogamev3.GameManagement.Presentation.DTOS.GameResponseModel;
 import com.example.videogamev3.GameManagement.Presentation.DTOS.ReviewRequestModel;
+import com.example.videogamev3.UserManagement.BusinessLogic.UserService;
+import com.example.videogamev3.UserManagement.DataAccess.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,12 +23,14 @@ public class GameService {
     private GameRepository gameRepository;
     private GameRequestMapper gameRequestMapper;
     private ReviewMapper reviewMapper;
+    private UserService userService;
 
-    public GameService(GameResponseMapper gameResponseMapper, GameRepository gameRepository, GameRequestMapper gameRequestMapper, ReviewMapper reviewMapper) {
+    public GameService(GameResponseMapper gameResponseMapper, GameRepository gameRepository, GameRequestMapper gameRequestMapper, ReviewMapper reviewMapper, UserService userService) {
         this.gameRepository =  gameRepository;
         this.gameRequestMapper = gameRequestMapper;
         this.gameResponseMapper = gameResponseMapper;
         this.reviewMapper = reviewMapper;
+        this.userService = userService;
     }
 
 
@@ -70,6 +74,14 @@ public class GameService {
 
         gameRepository.save(game);
         return gameResponseMapper.gameToGameResponseModel(game);
+    }
+
+    public void addGameToUser(String uuid, String gameId){
+        Game game = gameRepository.findGameByGameId_uuid(gameId);
+        User user = userService.getUserEntityById(uuid);
+        game.setUser(user);
+        gameRepository.save(game);
+
     }
 
 

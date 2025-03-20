@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "games")
+@ToString(exclude = "user") // Exclude the user field
 public class Game {
     @EmbeddedId
     private GameId gameId;
@@ -30,11 +32,13 @@ public class Game {
     @Enumerated(EnumType.STRING)
     private Genre genre;
     @JsonManagedReference
-    @OneToMany(mappedBy="game", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "game", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name="user_game_id", nullable = true)
-    private User gameOwner;
+    @JoinColumns({
+            @JoinColumn(name = "game_user_id", referencedColumnName = "user_id") // Correct JoinColumn
+    })
+    @JsonBackReference
+    private User user;
 }

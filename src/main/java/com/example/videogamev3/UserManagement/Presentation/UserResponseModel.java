@@ -1,5 +1,6 @@
 package com.example.videogamev3.UserManagement.Presentation;
 
+import com.example.videogamev3.GameManagement.DataAccess.Game;
 import com.example.videogamev3.PurchaseManagement.DataAccess.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,4 +17,5 @@ public class UserResponseModel {
     private String email;
     private double balance;
     private List<Order> orders;
+    private List<Game> games;
 }

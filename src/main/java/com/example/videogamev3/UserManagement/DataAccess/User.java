@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "games")
 public class User {
     @EmbeddedId
     private UserId userId;
@@ -26,8 +28,7 @@ public class User {
     @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Order> orders;
-
     @JsonManagedReference
-    @OneToMany(mappedBy="gameOwner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Game> games;
 }

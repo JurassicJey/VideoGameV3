@@ -15,19 +15,7 @@ CREATE TABLE IF NOT EXISTS AdminId (
     uuid VARCHAR(255) PRIMARY KEY
 );
 
--- Create Games Table
-CREATE TABLE IF NOT EXISTS games (
-    game_id VARCHAR(255) PRIMARY KEY, -- Using UUID for GameId
-    title VARCHAR(255),
-    price DOUBLE,
-    release_date TIMESTAMP,
-    description VARCHAR(2000), -- Adjusted size
-    publisher VARCHAR(255),
-    developer VARCHAR(255),
-    genre VARCHAR(255),
-    user_game_id VARCHAR(255)
 
-    );
 
 CREATE TABLE users (
     user_id VARCHAR(255) NOT NULL PRIMARY KEY ,
@@ -36,7 +24,19 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     balance DOUBLE PRECISION NOT NULL
 );
-
+-- Create Games Table
+CREATE TABLE IF NOT EXISTS games (
+                                     game_id VARCHAR(255) PRIMARY KEY, -- Using UUID for GameId
+    title VARCHAR(255),
+    price DOUBLE,
+    release_date TIMESTAMP,
+    description VARCHAR(2000), -- Adjusted size
+    publisher VARCHAR(255),
+    developer VARCHAR(255),
+    genre VARCHAR(255),
+    game_user_id VARCHAR(255),
+    FOREIGN KEY (game_user_id) REFERENCES users(user_id)
+    );
 
 -- Create Reviews Table
 CREATE TABLE IF NOT EXISTS reviews (

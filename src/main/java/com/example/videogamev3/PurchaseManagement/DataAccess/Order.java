@@ -22,6 +22,7 @@ public class Order {
     private OrderId orderId;
     private LocalDateTime orderDate;
     private double totalPrice;
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name="order_user_id", nullable = true)

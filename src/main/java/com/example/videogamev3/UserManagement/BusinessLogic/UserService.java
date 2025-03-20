@@ -30,7 +30,13 @@ public class UserService {
 
     public UserResponseModel getUserById(String uuid) {
         User user = userRepository.findUserByUserId_uuid(uuid);
+        System.out.println(user.getGames());
         return userResponseMapper.userToUserResponseModel(user);
+    }
+
+    public User getUserEntityById(String uuid) {
+        User user = userRepository.findUserByUserId_uuid(uuid);
+        return user;
     }
 
     public UserResponseModel addUser(UserRequestModel userRequestModel) {
