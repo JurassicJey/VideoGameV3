@@ -1,6 +1,5 @@
 package com.example.videogamev3.PurchaseManagement.DataAccess;
 
-
 import com.example.videogamev3.UserManagement.DataAccess.User;
 import com.example.videogamev3.UserManagement.DataAccess.UserId;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -17,14 +16,14 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "orders")
 public class Order {
-    @EmbeddedId
-    @Column(name = "order_id")
-    private OrderId orderId;
-    private LocalDateTime orderDate;
-    private double totalPrice;
+  @EmbeddedId
+  @Column(name = "order_id")
+  private OrderId orderId;
+  private LocalDateTime orderDate;
+  private double totalPrice;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name="order_user_id", nullable = true)
-    private User user;
+  @JsonBackReference
+  @ManyToOne
+  @JoinColumn(name = "order_user_id", nullable = true)
+  private User user;
 }

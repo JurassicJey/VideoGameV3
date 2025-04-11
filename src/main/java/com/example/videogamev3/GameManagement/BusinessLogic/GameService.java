@@ -46,8 +46,13 @@ public class GameService {
     }
 
     public GameResponseModel createGame(GameRequestModel gameRequestModel){
+        if (gameRequestModel.getPrice()<0){
+            return null;
+        }
         return gameResponseMapper.gameToGameResponseModel(gameRepository.save(gameRequestMapper.gameRequestModelToGame(gameRequestModel)));
     }
+
+
 
     public GameResponseModel updateGame(GameRequestModel gameRequestModel){
         return gameResponseMapper.gameToGameResponseModel(gameRepository.save(gameRequestMapper.gameRequestModelToGame(gameRequestModel)));

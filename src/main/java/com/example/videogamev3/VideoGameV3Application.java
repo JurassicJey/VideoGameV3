@@ -13,5 +13,4 @@ public class VideoGameV3Application {
     public static void main(String[] args) {
         SpringApplication.run(VideoGameV3Application.class, args);
     }
-
 }

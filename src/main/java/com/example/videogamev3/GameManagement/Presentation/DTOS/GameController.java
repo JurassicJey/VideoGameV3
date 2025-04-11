@@ -46,8 +46,12 @@ public class GameController {
     @PostMapping
     public ResponseEntity<GameResponseModel> addGame(@RequestBody GameRequestModel gameRequestModel) {
         GameResponseModel addedGame = gameService.createGame(gameRequestModel);
+        if (addedGame == null) {
+            return ResponseEntity.badRequest().build();
+        }
         return new ResponseEntity<>(addedGame, HttpStatus.CREATED);
     }
+
 
     @PutMapping
     public ResponseEntity<GameResponseModel> updateGame(@RequestBody GameRequestModel gameRequestModel) {
