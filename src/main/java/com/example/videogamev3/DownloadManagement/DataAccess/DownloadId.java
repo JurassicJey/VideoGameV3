@@ -2,14 +2,27 @@ package com.example.videogamev3.DownloadManagement.DataAccess;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor; // Required by JPA for Embeddable
 
-@NoArgsConstructor
-@Data
-@AllArgsConstructor
+import java.io.Serializable;
+import java.util.UUID;
+
 @Embeddable
-public class DownloadId {
-    private String uuid;
+@Getter
+@NoArgsConstructor // JPA requirement
+@AllArgsConstructor // Convenience
+@EqualsAndHashCode // Essential for Value Objects
+public class DownloadId implements Serializable { // Serializable needed for EmbeddedId
+    private UUID uuid;
 
+    public static DownloadId generate() {
+        return new DownloadId(UUID.randomUUID());
+    }
+
+    @Override
+    public String toString() {
+        return uuid.toString();
+    }
 }

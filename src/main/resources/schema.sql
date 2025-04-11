@@ -64,3 +64,30 @@ CREATE TABLE orders (
                         PRIMARY KEY (order_id),
                         FOREIGN KEY (order_user_id) REFERENCES users(user_id)
 );
+
+CREATE TABLE carts (
+                       cart_id VARCHAR(255) NOT NULL PRIMARY KEY,
+                       cart_user_id VARCHAR(255),
+                       FOREIGN KEY (cart_user_id) REFERENCES users(user_id)
+);
+
+-- Create the Collection Table for the games list in Cart
+-- Corresponds to @ElementCollection and @CollectionTable(name = "shopping_cart_game_ids", ...)
+CREATE TABLE shopping_cart_game_ids (
+
+                                        cart_id VARCHAR(255) NOT NULL,
+
+
+                                        game_id VARCHAR(255) NOT NULL,
+
+                                        FOREIGN KEY (cart_id) REFERENCES carts(cart_id) ON DELETE CASCADE,
+
+                                        FOREIGN KEY (game_id) REFERENCES games(game_id));
+
+
+CREATE TABLE downloads (
+                           id              UUID PRIMARY KEY,          -- Corresponds to @Id private UUID id;
+                           source_url      VARCHAR(2048) NOT NULL,    -- Corresponds to private String sourceUrl; VARCHAR length can be adjusted
+                           download_status VARCHAR(32)   NOT NULL     -- Corresponds to @Enumerated(EnumType.STRING) private DownloadStatus downloadStatus;
+    -- VARCHAR length accommodates longest status string (e.g., "DOWNLOADING") plus buffer.
+);

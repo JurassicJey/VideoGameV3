@@ -73,3 +73,37 @@ INSERT INTO reviews (review_id, comment, rating, timestamp, game_id) VALUES
                                                                          ('review-8', 'Arthur Morgan is a legend.', '5/5', '2019-11-10 10:00:00', 'game-3'),
                                                                          ('review-9', 'Prepare to die... a lot.', '4/5', '2022-03-15 18:00:00', 'game-4'),
                                                                          ('review-10', 'Build anything you can imagine.', '5/5', '2023-01-05 00:00:00', 'game-5');
+
+
+-- ==================================================
+-- Populate 'carts' table
+-- ==================================================
+-- NOTE: Using the user IDs defined above
+INSERT INTO carts (cart_id, cart_user_id) VALUES
+                                              ('cart-uuid-c1c1', '123e4567-e89b-12d3-a456-426614174000'), -- Cart for john_doe
+                                              ('cart-uuid-c2c2', '234e5678-f90c-23e4-b567-537725285111'), -- Cart for jane_smith
+                                              ('cart-uuid-c3c3', NULL);             -- Anonymous cart
+
+-- ==================================================
+-- Populate 'shopping_cart_game_ids' table
+-- ==================================================
+-- NOTE: Using cart IDs defined above and game IDs defined above
+INSERT INTO shopping_cart_game_ids (cart_id, game_id) VALUES
+-- Games for Cart 'cart-uuid-c1c1' (john_doe)
+('cart-uuid-c1c1', 'game-1'),
+('cart-uuid-c1c1', 'game-2'),
+
+-- Games for Cart 'cart-uuid-c2c2' (jane_smith)
+('cart-uuid-c2c2', 'game-1'),
+('cart-uuid-c2c2', 'game-3'),
+('cart-uuid-c2c2', 'game-5'),
+
+-- Game for Cart 'cart-uuid-c3c3' (Anonymous)
+('cart-uuid-c3c3', 'game-4');
+
+-- ==================================================
+-- Populate 'orders' table
+-- ==================================================
+-- NOTE: Using user IDs defined above
+INSERT INTO orders (order_id, order_date, total_price, order_user_id) VALUES
+    ('o4d5e6f7-a8b9-0123-4567-890abcdef23', '2023-11-01 09:00:00', 75.50, '234e5678-f90c-23e4-b567-537725285111');

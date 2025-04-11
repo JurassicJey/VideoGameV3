@@ -6,6 +6,7 @@ import com.example.videogamev3.UserManagement.DataMapper.UserRequestMapper;
 import com.example.videogamev3.UserManagement.DataMapper.UserResponseMapper;
 import com.example.videogamev3.UserManagement.Presentation.UserRequestModel;
 import com.example.videogamev3.UserManagement.Presentation.UserResponseModel;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,4 +59,26 @@ public class UserService {
         User user = userRepository.findUserByUserId_uuid(uuid);
         userRepository.delete(user);
     }
+
+    public UserResponseModel updateUserBalance(String uuid, double newBalance) {
+        User user = findUserByUuidOrThrow(uuid); // Reuse the finding logic
+
+        // Validate newBalance if necessary (e.g., non-negative)
+        if (newBalance < 0) {
+            throw new IllegalArgumentException("Balance cannot be negative.");
+        }
+
+        user.setBalance(newBalance); // Assuming User entity has setBalance method
+        User updatedUser = userRepository.save(user);
+        return userResponseMapper.userToUserResponseModel(updatedUser);
+    }
+
+    private User findUserByUuidOrThrow(String uuid) {
+        User user = userRepository.findUserByUserId_uuid(uuid);
+        if (user == null) {
+            throw new EntityNotFoundException("User not found with UUID: " + uuid);
+        }
+        return user;
+    }
 }
+

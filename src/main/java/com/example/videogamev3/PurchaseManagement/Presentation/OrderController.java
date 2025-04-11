@@ -1,9 +1,7 @@
 package com.example.videogamev3.PurchaseManagement.Presentation;
 
 import com.example.videogamev3.PurchaseManagement.BusinessLogic.CartService;
-import com.example.videogamev3.PurchaseManagement.BusinessLogic.OrderService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,6 +17,6 @@ public class OrderController {
 
     @PostMapping("{cart_id}/game/{game_id}")
     public void addGameToCart(@PathVariable String cart_id, @PathVariable String game_id) {
-
+        cartService.addGame(cart_id, game_id);
     }
 }

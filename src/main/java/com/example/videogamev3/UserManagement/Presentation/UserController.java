@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -55,5 +56,11 @@ public class UserController {
         userService.deleteUser(uuid);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
+    }
+
+    @PutMapping("uuid/{user_id}/balance/{balance}")
+    public ResponseEntity<UserResponseModel> updateUserBalance(@PathVariable String user_id, @PathVariable double balance) {
+        userService.updateUserBalance(user_id, balance);
+        return new ResponseEntity<>(userService.updateUserBalance(user_id, balance),  HttpStatus.OK);
     }
 }

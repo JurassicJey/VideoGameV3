@@ -19,12 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CartService {
     private CartRepository cartRepository;
-    private OrderRepository orderRepository;
-    private RestTemplate restTemplate;
-    private ObjectMapper objectMapper;
     private final OrderRequestMapper orderRequestMapper;
-    private final String USER_MANAGEMENT_BASE_URL = "http://localhost:8080/api/v1/user";
-    private final String GAME_MANAGEMENT_BASE_URL = "http://localhost:8080/api/v1/game";
     private final OrderGameClient orderGameClient;
 
 
@@ -46,5 +41,8 @@ public class CartService {
 
     }
 
+    public void addGame(String cartId, String gameId){
+        cartRepository.findCartByCartId_Uuid(cartId).getGames().add(gameId);
+    }
 
 }
